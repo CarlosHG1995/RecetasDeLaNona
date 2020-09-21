@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.master.recetasdelanona.Vistas.MenuActivity"
+    >
+    <item
+        android:id="@+id/acercaDe"
+        android:title="@string/acercade"
+        android:icon="@drawable/info"
+        app:showAsAction="ifRoom"
+        android:orderInCategory="90" />
+
+    <item
+        android:id="@+id/compartir"
+        android:orderInCategory="50"
+        android:title="@string/compartir"
+        app:showAsAction="never" />
+
+    <!--   <item
+           android:id="@+id/modo_nocturno"
+           android:title="@string/activar_modo"
+           app:showAsAction="ifRoom"
+           android:orderInCategory="95"
+           android:icon="@drawanoche"/>
+
+
+       <item
+           android:id="@+id/buscar"
+           android:title="Buscar categoria"
+           android:orderInCategory="89"
+           android:icon="@drawable/lupa"
+           app:showAsAction="ifRoom|collapseActionView"
+           app:actionViewClass="androidx.appcompat.widget.SearchView"
+           />-->
+
+</menu>

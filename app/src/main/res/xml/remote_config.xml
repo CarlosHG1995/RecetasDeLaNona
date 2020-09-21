@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<defaultsMap>
+    <entry>
+        <key>fondo_login</key>
+        <value>#FFECB3</value>
+    </entry>
+
+    <entry>
+        <key>cambio_color</key>
+        <value>true</value>
+    </entry>
+
+    <entry>
+        <key>ultima_version_app</key>
+        <value>1</value>
+    </entry>
+
+</defaultsMap>

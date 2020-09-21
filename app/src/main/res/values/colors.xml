@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <color name="colorPrimary">#008577</color>
+  <color name="colorPrimaryDark">#00574B</color>
+  <color name="colorAccent">#FFB300</color>
+  <color name="primary">#FFC107</color>
+  <color name="primary_dark">#FFA000</color>
+  <color name="primary_light">#FFECB3</color>
+  <color name="accent">#009688</color>
+
+  <color name="background">#FFFFFF</color>
+  <color name="primary_text">#212121</color>
+  <color name="secondary_text">#757575</color>
+
+  <color name="icons">#212121</color>
+  <color name="divider">#BDBDBD</color>
+  <color name="titulobar">#00574B</color>
+  <color name="com_facebook_button_background_color_focused_disabled">#3C5A99</color>
+  <color name="com_facebook_button_background_color_focused">#3C5A99</color>
+  <color name="com_facebook_button_border_color_focused">#3C5A99</color>
+</resources>

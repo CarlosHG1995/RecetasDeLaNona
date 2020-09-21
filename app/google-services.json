@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "998565478192",
+    "firebase_url": "https://recetasdelanona-6c6a3.firebaseio.com",
+    "project_id": "recetasdelanona-6c6a3",
+    "storage_bucket": "recetasdelanona-6c6a3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:998565478192:android:f70a4e93263ccad72792f5",
+        "android_client_info": {
+          "package_name": "com.master.recetasdelanona"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "998565478192-rpd8hf8q46rvs9c2aetttd9k9msdd4kv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.master.recetasdelanona",
+            "certificate_hash": "f34b7292aec9e87624e02c2aa013308e50cba4c0"
+          }
+        },
+        {
+          "client_id": "998565478192-5n6vcdv4crskemh013far1ck3ugoasvl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAjyhcvtaEosQCzzke7NHzlNt2fNF-ZA64"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "998565478192-5n6vcdv4crskemh013far1ck3ugoasvl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

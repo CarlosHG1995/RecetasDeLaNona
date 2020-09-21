@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.master.recetasdelanona">
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name= "android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/libro_receta"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/libro_receta_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true">
+        <activity android:name=".Firebase.LoginFirebaseActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+
+        </activity>
+
+        <activity android:name=".Vistas.SplashScreen"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:configChanges= "keyboard|keyboardHidden|screenLayout|screenSize|orientation">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".Vistas.MenuActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar">
+
+            <intent-filter>
+
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:host="recetasdelanona6c6a3.firebaseapp.com"
+                    android:scheme="http"/>
+                <data android:host="recetasdelanona6c6a3.firebaseapp.com"
+                    android:scheme="https"/>
+            </intent-filter>
+
+        </activity>
+
+        <!--para uso de facebook-->
+        <meta-data android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_application_id"/>
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
+
+        <activity android:name="com.facebook.FacebookActivity"
+            android:configChanges= "keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:label="@string/app_name" />
+        <activity android:name=".Vistas.UsuarioActivity"
+            android:label="@string/info_usuario"/>
+
+        <activity android:name=".Vistas.VistaCategoriaRecetas"
+            android:parentActivityName=".Vistas.MenuActivity"
+            android:label="@string/coleccion_receta"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="OPEN_ACTIVITY_1"/>
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+                <!-- si hay error comentar el intent filter-->
+        </activity>
+        <activity android:name=".Vistas.VistaListaRecetas"
+            android:label="@string/info_receta"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:exported="true"/>
+        <activity android:name=".Dialogo"
+            android:label="@string/app_name"/>
+        <activity android:name=".Datos.TemasCategorias"
+            android:parentActivityName=".Vistas.MenuActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait"
+            android:configChanges= "keyboard|keyboardHidden"/>
+
+
+        <provider
+            android:authorities="com.facebook.app.FacebookContentProvider294262898666218"
+            android:name="com.facebook.FacebookContentProvider"
+            android:exported="true" />
+
+        <service android:name=".Firebase.CategoriasRecetasFMService" >
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+            </intent-filter>
+        </service>
+        <service android:name=".Firebase.MyFirebaseInstanceIdService" >
+            <intent-filter>
+            <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
+            </intent-filter>
+        </service>
+
+        <receiver android:name=".ReceptorFCM"
+            android:exported="true"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+                <action android:name="android.intent.action.QUICKBOOT_POWERON"/>
+            </intent-filter>
+        </receiver>
+    </application>
+
+
+</manifest>

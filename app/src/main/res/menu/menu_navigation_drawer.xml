@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="#FFECB3">
+         <item android:title="@string/app_name">
+        <menu>
+            <item
+                android:id="@+id/info_user"
+                android:icon="@drawable/user"
+                android:title="@string/detalles_usuario" />
+
+
+            <item
+                android:id="@+id/suscripcion"
+                android:icon="@drawable/campana"
+                 android:title="@string/suscripcion"/>
+
+            </menu>
+        </item>
+    <item android:title="@string/log_out">
+        <menu>
+            <item
+                android:id="@+id/cerrar_sesion"
+                android:icon="@android:drawable/ic_lock_power_off"
+                android:title="@string/log_out" />
+        </menu>
+    </item>
+
+
+</menu>

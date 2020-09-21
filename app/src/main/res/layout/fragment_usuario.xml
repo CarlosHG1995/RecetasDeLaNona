@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingTop="22dp">
+
+
+    <com.android.volley.toolbox.NetworkImageView
+        android:id="@+id/imagen"
+        android:layout_width="115dp"
+        android:layout_height="115dp"
+        android:paddingTop="9dp"
+        android:src="@mipmap/ic_launcher_round" />
+
+
+        <TextView
+            android:id="@+id/nombres"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/titulobar"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:fontFamily="@font/carrois_gothic_sc"
+            android:textAllCaps="false"/>
+
+        <TextView
+            android:id="@+id/correo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textColor="@color/accent"
+            android:textStyle="bold"
+            android:fontFamily="@font/news_cycle_bold"
+            />
+
+<!--
+           -->
+</LinearLayout>

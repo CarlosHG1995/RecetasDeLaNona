@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.master.recetasdelanona.Vistas.VistaListaRecetas"
+    >
+    <item
+        android:id="@+id/shareFB"
+        android:title="@string/share_fb"
+        android:icon="@drawable/com_facebook_button_icon"
+        app:showAsAction="ifRoom|collapseActionView"
+        android:titleCondensed="Compartir en facebook"
+        android:orderInCategory="90" />
+
+    <item
+        android:id="@+id/share"
+        android:title="@string/share_recipe"
+        app:showAsAction="never"
+        android:orderInCategory="95"
+        android:icon="@android:drawable/ic_menu_share"/>
+
+<!--
+
+    <item
+        android:id="@+id/buscar"
+        android:title="Buscar categoria"
+        android:orderInCategory="89"
+        android:icon="@drawable/lupa"
+        app:showAsAction="ifRoom|collapseActionView"
+        app:actionViewClass="androidx.appcompat.widget.SearchView"
+        />-->
+
+</menu>

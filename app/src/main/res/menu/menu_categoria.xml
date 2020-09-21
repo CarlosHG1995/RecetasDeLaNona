@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.master.recetasdelanona.Vistas.VistaListaRecetas"
+    >
+
+<!---->
+
+    <item
+        android:id="@+id/buscar"
+        android:title="@string/buscar"
+        android:orderInCategory="89"
+        android:icon="@drawable/lupa"
+        app:showAsAction="ifRoom|collapseActionView"
+        app:actionViewClass="androidx.appcompat.widget.SearchView"
+        />
+
+</menu>

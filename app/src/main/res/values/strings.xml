@@ -1,0 +1,63 @@
+<resources>
+    <string name="app_name">Recetas De La Nona</string>
+    <string name="log_out">Cerrar sesión</string>
+    <string name="facebook_application_id" translatable="false">294262898666218</string>
+    <string name="fb_login_protocol_scheme" translatable="false">fb294262898666218</string>
+    <string name="drawer_open" translatable="false">navigation drawer abierto </string>
+    <string name="drawer_close" translatable="false">navigation drawer cerrado</string>
+    <string name="toast_login">Inicio sesión</string>
+    <string name="error_red">Sin conexión a internet</string>
+    <string name="error_proveedor">Error en proveedor</string>
+    <string name="error_desarrollador">Error de desarrollador</string>
+    <string name="error_">Otro error de autenticación</string>
+    <string name="cancelar">Cancelado</string>
+    <string name="login_con_google">Autenticar con Google</string>
+    <string name="error_conneccion">Error de autenticación con Google</string>
+    <string name="facebook_cancel">Cancelada autentificación con facebook</string>
+    <string name="sin_conexion">No está conectado a una red</string>
+    <string name="bienvenido">Bienvenido</string>
+    <string name="login">Haz el login</string>
+    <string name="mensaje">Mensaje:</string>
+    <string name="CERRAR">Cerrar</string>
+    <string name="splash">Recetas de la nona. "\n"Por Carlos H García C </string>
+    <string name="info_app">Esta app se realiza como proyecto final de Máster "Desarrollo de aplicaciones sobre dispositivos móviles UPV 2019/20".</string>
+    <string name="acercade">Acerca de</string>
+    <string name="compartir">Compartir app</string>
+    <string name="suscripcion">Activar/Desactivar \nmensajería Firebase</string>
+    <string name="VALORA">Valora la receta</string>
+    <string name="info_usuario">Información del usuario</string>
+    <string name="coleccion_receta">Recetas colección</string>
+    <string name="info_receta">Información de la Receta</string>
+    <string name="suscripcion_firebase">Suscripciones de mensajes firebase</string>
+    <string name="cancelar_notificacion">Cancelar notificaciones</string>
+    <string name="txtView_suscripciones">Selecciona sus \n categorías de recetas preferidas para a
+        suscribirse.</string>
+    <string name="jugos">Jugos</string>
+    <string name="carnes">Carnes</string>
+    <string name="arepas">Arepas</string>
+    <string name="tortas">Tortas</string>
+    <string name="granos">Granos</string>
+    <string name="sopas">Sopa</string>
+    <string name="detalles_usuario">Detalles del Usuario</string>
+    <string name="listado">Listado de recetas de</string>
+    <string name="share_recipe">Compartir receta</string>
+    <string name="share_fb">Compartir en facebook</string>
+    <string name="progress_carga">Cargando listado de recetas</string>
+    <string name="progress_carga2">Cargando receta</string>
+    <string name="progress_carga3">Cargando categorias de recetas</string>
+    <string name="progress_wait">Espere por favor..</string>
+    <string name="foto">Foto compartida exitosamente.</string>
+    <string name="buscar">Buscar categoria</string>
+    <string name="actualizar">Actualizar</string>
+    <string name="invitacion">Si te gusta la cocinar, esta aplicación la debes tener</string>
+    <string name="invitacion1">Invitación a la app Recetas de la nona</string>
+    <string name="actualizar1">Actualización disponible</string>
+    <string name="cancelar1">Cancelar</string>
+    <string name="mensaje_actualizado">Su app ya está actualizada</string>
+    <string name="mensaje_alert_update">Hola, hay una nueva versión de esta app. Por favor
+        considera actualizarla</string>
+    <string name="mensaje_actualizar">Actualiza la app</string>
+    <string name="compartir_app">Compartir app</string>
+    <string name="compartir_receta">Compartir receta</string>
+    <string name="activar_modo">Activar modo noche</string>
+</resources>
