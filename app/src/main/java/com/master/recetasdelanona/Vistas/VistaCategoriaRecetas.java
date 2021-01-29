@@ -144,7 +144,7 @@ public class VistaCategoriaRecetas extends AppCompatActivity {
     }
 
     @Override public boolean onCreateOptionsMenu(Menu menu) {
-        /*
+        /**/
         getMenuInflater().inflate(R.menu.menu_categoria,menu);
         MenuItem menuItem = menu.findItem(R.id.buscar);
         SearchView searchReceta =(SearchView) MenuItemCompat.getActionView(menuItem);
@@ -156,19 +156,19 @@ public class VistaCategoriaRecetas extends AppCompatActivity {
             }
 
             @Override public boolean onQueryTextChange(String newText) {
-                //FirebaseSearchReceta(newText);
+                FirebaseSearchReceta(newText);
                 return false;
             }
-        });*/
+        });
         return super.onCreateOptionsMenu(menu);
     }
 
     @Override public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        /*int id = item.getItemId();
-
+        /**/
+        int id = item.getItemId();
         if(id == R.id.buscar){
             return true;
-        }*/
+        }
             return super.onOptionsItemSelected(item);
     }
 
