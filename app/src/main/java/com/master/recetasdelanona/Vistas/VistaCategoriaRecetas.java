@@ -20,6 +20,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.MenuItemCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -28,6 +29,8 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.master.recetasdelanona.Adaptadores.AdaptadorRecetas;
 import com.master.recetasdelanona.Datos.Receta;
 import com.master.recetasdelanona.R;
@@ -45,7 +48,7 @@ public class VistaCategoriaRecetas extends AppCompatActivity {
     public static String categoria_receta;
     public static FirebaseFirestore instancia= FirebaseFirestore.getInstance();
     public static CollectionReference  coleccion_cat_recetas= instancia.collection(CATEGORIAS),
-     collection_ref_categoria_receta, consulta;
+     collection_ref_categoria_receta;
     private ProgressDialog progresoCarga;
 
     @Override protected void onCreate(Bundle savedInstanceState) {
@@ -70,8 +73,10 @@ public class VistaCategoriaRecetas extends AppCompatActivity {
         progresoCarga.show();
 
         cargarInfo_Categoria();
+        ListadoDeRecetas();
     }
-    public void cargarInfo_Categoria(){
+
+    private void cargarInfo_Categoria(){
         Bundle extra = getIntent().getExtras();
         categoria_receta= extra.getString("categoria");
         if(categoria_receta==null) categoria_receta="";
@@ -97,13 +102,17 @@ public class VistaCategoriaRecetas extends AppCompatActivity {
         }
         */
         Log.d("TAG","categ Recetas " +  categoria_receta + " collection " + collection_ref_categoria_receta);
-        /**/
-        Query query = coleccion_cat_recetas.document(categoria_receta).collection("recetas").limit(40);
-        FirestoreRecyclerOptions<Receta> opciones_de_las_recetas = new FirestoreRecyclerOptions.Builder<Receta>()
+    }
+
+    private void ListadoDeRecetas() {
+        Query query = coleccion_cat_recetas.document(categoria_receta).collection("recetas")
+        .limit(40);
+        FirestoreRecyclerOptions <Receta> opciones_de_las_recetas = new FirestoreRecyclerOptions.Builder<Receta>()
                 .setQuery(query,Receta.class).build();
         adaptadorRecetas = new AdaptadorRecetas(opciones_de_las_recetas);
         final RecyclerView recyclerView = findViewById(R.id.reciclerViewRecetas);
         recyclerView.setLayoutManager(new GridLayoutManager(this,2));
+        //recyclerView.setLayoutManager(new StaggeredGridLayoutManager(2,1));
         recyclerView.setAdapter(adaptadorRecetas);
 
         adaptadorRecetas.setOnItemClickListener(new View.OnClickListener() {
@@ -112,9 +121,9 @@ public class VistaCategoriaRecetas extends AppCompatActivity {
                 Receta las_recetas = adaptadorRecetas.getItem(posicion);
                 String doc_categoria = categoria_receta;
                 String receta_seleccionadaID = adaptadorRecetas.getSnapshots().getSnapshot(posicion).getId();
-                Log.d("TAG"," sub coleccion receta -> " + receta_seleccionadaID + "\n" + las_recetas.toString() +"\n categoria selec "+ doc_categoria);
+                Log.d("TAG"," sub coleccion receta -> "+receta_seleccionadaID+"\n"+las_recetas.toString()+"\n categoria selec "+doc_categoria);
                 Context context = getAppContext();
-                Intent intent = new Intent(context, VistaListaRecetas.class);
+                Intent intent = new Intent(context,VistaListaRecetas.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.putExtra("documento_receta", receta_seleccionadaID);
                 intent.putExtra("categoria",doc_categoria);
@@ -151,12 +160,13 @@ public class VistaCategoriaRecetas extends AppCompatActivity {
         searchReceta.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override public boolean onQueryTextSubmit(String query) {
                 FirebaseSearchReceta(query);
+                adaptadorRecetas.startListening();
                 Log.d("TAG","query buscar " +query);
                 return false;
             }
 
             @Override public boolean onQueryTextChange(String newText) {
-                FirebaseSearchReceta(newText);
+                //FirebaseSearchReceta(newText);
                 return false;
             }
         });
@@ -174,18 +184,49 @@ public class VistaCategoriaRecetas extends AppCompatActivity {
 
     //buscar alguna receta
     private void FirebaseSearchReceta(final String buscarTxt){
-        Log.d("TAG","firebase search categoria " + categoria_receta );
-        consulta = coleccion_cat_recetas.document(categoria_receta).collection("recetas");
-        Query query = consulta.orderBy("nombre_receta",Query.Direction.ASCENDING)
-                .startAt(buscarTxt).endAt(buscarTxt +"\uf8ff");
-        Log.d("TAG","firebase search " + buscarTxt +"\n query "+ query.toString());
-        FirestoreRecyclerOptions<Receta> opciones_de_las_recetas = new FirestoreRecyclerOptions.Builder<Receta>()
-        .setQuery(query,Receta.class).build();
-        adaptadorRecetas = new AdaptadorRecetas(opciones_de_las_recetas);
-        final RecyclerView recyclerView = findViewById(R.id.reciclerViewRecetas);
-        recyclerView.setLayoutManager(new GridLayoutManager(this,1));
-        recyclerView.setAdapter(adaptadorRecetas);/**/
-        adaptadorRecetas.notifyDataSetChanged();
+        Log.d("TAG","firebase search categoria " + categoria_receta + buscarTxt);
+        coleccion_cat_recetas.document(categoria_receta).collection("recetas")
+                .whereEqualTo("nombre_receta",buscarTxt)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener <QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task <QuerySnapshot> task) {
+                        if(task.isSuccessful() && !task.getResult().isEmpty()) {
+                            for (QueryDocumentSnapshot documentSnapshot : task.getResult()){
+                                Query query = coleccion_cat_recetas.document(categoria_receta).collection("recetas").whereEqualTo("nombre_receta",buscarTxt);
+                                Log.d("TAG","documento consulta search " + documentSnapshot.getId()+" vacio? "+ task.getResult().isEmpty());
+                                FirestoreRecyclerOptions <Receta> opciones_de_las_recetas = new FirestoreRecyclerOptions.Builder<Receta>()
+                                        .setQuery(query,Receta.class).build();
+                                adaptadorRecetas = new AdaptadorRecetas(opciones_de_las_recetas);
+                                final RecyclerView recyclerView = findViewById(R.id.reciclerViewRecetas);
+                                recyclerView.setLayoutManager(new GridLayoutManager(VistaCategoriaRecetas.this,1));
+                                //recyclerView.setLayoutManager(new StaggeredGridLayoutManager(2,1));
+                                recyclerView.setAdapter(adaptadorRecetas);
+                                adaptadorRecetas.startListening();
+                                adaptadorRecetas.setOnItemClickListener(new View.OnClickListener() {
+                                    @Override public void onClick(View v) {
+                                        int posicion = recyclerView.getChildAdapterPosition(v);
+                                        Receta las_recetas = adaptadorRecetas.getItem(posicion);
+                                        String doc_categoria = categoria_receta;
+                                        String receta_seleccionadaID = adaptadorRecetas.getSnapshots().getSnapshot(posicion).getId();
+                                        Log.d("TAG"," sub coleccion receta -> "+receta_seleccionadaID+"\n"+las_recetas.toString()+"\n categoria selec "+doc_categoria);
+                                        Context context = getAppContext();
+                                        Intent intent = new Intent(context,VistaListaRecetas.class);
+                                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                        intent.putExtra("documento_receta", receta_seleccionadaID);
+                                        intent.putExtra("categoria",doc_categoria);
+                                        context.startActivity(intent);
+                                        overridePendingTransition(R.anim.alfa_entrada,R.anim.alfa_salida);
+                                    }
+                                });
+                            }
+                        }  else {
+                            Log.d("TAG","Error consulta " + task.getException());
+                            Toast.makeText(VistaCategoriaRecetas.this,"No hubo coincidencias en la búsqueda o error en la consulta",Toast.LENGTH_LONG).show();
+                            ListadoDeRecetas();
+                            adaptadorRecetas.startListening();
+                        }
+                    }
+                });
     }
-
 }
